@@ -10,23 +10,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Set up JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: 15
-      - name: Build
-        run: |
-          ls
-          chmod +x ./gradlew
-          export TAG="$(echo $GITHUB_REF | grep -q refs/tags && echo ${GITHUB_REF/refs\/tags\/} || echo '')"
-          ./gradlew buildAll
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Export tag
+        run: export TAG="$(echo $GITHUB_REF | grep -q refs/tags && echo ${GITHUB_REF/refs\/tags\/} || echo '')"
+      - name: Build with Gradle
+        run: ./gradlew buildAll
+          
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            build/libs/*-all.jar
-            jattach-debug-plugin/build/libs/*.jar
-            api/build/libs/*.jar
+          files: build/libs/*-all.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
