@@ -18,6 +18,7 @@ jobs:
 
     steps:
       - checkout
+      - run: chmod +x gradlew 
       - run: ./gradlew buildAll 
       
       - store_artifacts:
