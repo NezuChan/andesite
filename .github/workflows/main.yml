@@ -22,7 +22,8 @@ jobs:
         run: export GITHUB_TAG="$(echo $GITHUB_REF | grep -q refs/tags && echo ${GITHUB_REF/refs\/tags\/} || echo '')"
       - name: Build with Gradle
         run: ./gradlew buildAll
-          
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
