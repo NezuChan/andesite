@@ -41,7 +41,7 @@ dependencies {
     api "io.vertx:vertx-web:$vertxWebVersion"
 
     //Audio player
-    api("com.github.Walkst:lavaplayer-fork:$lavaplayerVersion") {
+    api("com.github.Walkyst:lavaplayer-fork:$lavaplayerVersion") {
         exclude group: 'com.sedmelluq', module: 'lavaplayer-natives'
     }
 

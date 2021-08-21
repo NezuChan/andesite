@@ -72,7 +72,7 @@ dependencies {
     implementation "io.netty:netty-transport-native-kqueue:$nettyKQueueVersion:osx-x86_64"
 
     //Audio player
-    implementation("com.github.Walkst:lavaplayer-fork:$lavaplayerVersion") {
+    implementation("com.github.Walkyst:lavaplayer-fork:$lavaplayerVersion") {
         exclude group: 'com.sedmelluq', module: 'lavaplayer-natives'
     }
     implementation "com.github.natanbc:lp-cross:$lpcrossVersion"
