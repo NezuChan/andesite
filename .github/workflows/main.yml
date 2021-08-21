@@ -16,6 +16,7 @@ jobs:
           java-version: 15
       - name: Build
         run: |
+          ls
           chmod +x ./gradlew
           export TAG="$(echo $GITHUB_REF | grep -q refs/tags && echo ${GITHUB_REF/refs\/tags\/} || echo '')"
           ./gradlew buildAll
