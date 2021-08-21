@@ -30,7 +30,7 @@ import com.sedmelluq.discord.lavaplayer.source.twitch.TwitchStreamAudioSourceMan
 import com.sedmelluq.discord.lavaplayer.source.vimeo.VimeoAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.track.playback.NonAllocatingAudioFrameBuffer;
-import com.sedmelluq.lava.extensions.youtuberotator.YoutubeIpRotator;
+import com.sedmelluq.lava.extensions.youtuberotator.YoutubeIpRotatorSetup;
 import com.sedmelluq.lava.extensions.youtuberotator.planner.AbstractRoutePlanner;
 import com.sedmelluq.lava.extensions.youtuberotator.planner.BalancingIpRoutePlanner;
 import com.sedmelluq.lava.extensions.youtuberotator.planner.NanoIpRoutePlanner;
@@ -335,11 +335,11 @@ public class Andesite implements NodeState {
         if(planner != null) {
             var retryLimit = config.getInt("lavaplayer.youtube.rotation.retry-limit");
            if(retryLimit < 0) {
-               YoutubeIpRotator.setup(yt, planner);
+               new YoutubeIpRotatorSetup(planner).forSource(yt).setup();
            } else if(retryLimit == 0) {
-               YoutubeIpRotator.setup(yt, planner, Integer.MAX_VALUE);
+               new YoutubeIpRotatorSetup(planner).forSource(yt).withRetryLimit(Integer.MAX_VALUE).setup();
            } else {
-               YoutubeIpRotator.setup(yt, planner, retryLimit);
+               new YoutubeIpRotatorSetup(planner).forSource(yt).withRetryLimit(retryLimit).setup();
            }
         }
     }

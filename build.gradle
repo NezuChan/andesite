@@ -32,7 +32,7 @@ ext {
     nettyKQueueVersion =  '4.1.52.Final'
     lavaplayerVersion =   '5eee2e95bd'
     lpcrossVersion =      '0.1.1'
-    ytRotatorVersion =    '0.1.7'
+    ytRotatorVersion =    '0.2.3'
     lavadspVersion =      '0.7.6'
     logbackVersion =      '1.2.3'
     magmaVersion =        '0.12.5'
