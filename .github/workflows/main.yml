@@ -19,11 +19,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Export tag
-        run: export TAG="$(echo $GITHUB_REF | grep -q refs/tags && echo ${GITHUB_REF/refs\/tags\/} || echo '')"
+        run: export GITHUB_TAG="$(echo $GITHUB_REF | grep -q refs/tags && echo ${GITHUB_REF/refs\/tags\/} || echo '')"
       - name: Build with Gradle
         run: ./gradlew buildAll
           
       - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: build/libs/*-all.jar
