@@ -30,7 +30,7 @@ ext {
     koeVersion =          '1864a8b803'
     nettyEpollVersion =   '4.1.52.Final'
     nettyKQueueVersion =  '4.1.52.Final'
-    lavaplayerVersion =   '5eee2e95bd'
+    lavaplayerVersion =   '3a54cbd43b'
     lpcrossVersion =      '0.1.1'
     ytRotatorVersion =    '0.2.3'
     lavadspVersion =      '0.7.6'
