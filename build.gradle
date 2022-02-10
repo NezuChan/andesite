@@ -14,11 +14,11 @@ allprojects {
     version versionObj.toString()
 
     repositories {
+        mavenCentral()
         jcenter()
-        maven { url 'https://dl.bintray.com/natanbc/maven' }
-        maven { url 'https://dl.bintray.com/sedmelluq/com.sedmelluq' }
+        mavenLocal()
+        maven { url "https://jitpack.io" }
         maven { url 'https://m2.dv8tion.net/releases' }
-        maven { url 'https://jitpack.io' }
     }
 }
 
