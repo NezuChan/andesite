@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  gradle:
+    runs-on: ubuntu-latest
+    outputs:
+      rundocker: ${{ steps.rundocker.outputs.rundocker }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 13
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Execute Gradle build
+        run: ./gradlew build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: ./build/libs/*.jar
